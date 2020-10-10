@@ -10,6 +10,28 @@ import os
 import argparse
 
 
+def init_args():
+    """Defines command line arguments.
+
+    Returns:
+        ArgumentParser: argument parser that contains the specified arguments.
+    """
+    helper = 'Initializes a project directory for design work, by creating a main directory with the given name, and sub-dirs (Assets, JPG, etc).'
+    parser = argparse.ArgumentParser(description=helper)
+
+    parser.add_argument('name', type=str, help='The name of the project')
+    parser.add_argument('-P', '--path', default='.', type=str, dest='PATH',
+                        help='The path where to init the project (default: the current directory).')
+    parser.add_argument('-a', '--assets', action='store_true',
+                        help='Creates a Assets directory if specified.')
+    parser.add_argument('-j', '--jpg', action='store_true',
+                        help='Creates a JPG directory if specified.')
+    parser.add_argument('-p', '--png', action='store_true',
+                        help='Creates a PNG directory if specified.')
+
+    return parser
+
+
 def init_dir(path):
     """Creates a directory with the given name, and appends 2 sub-dirs
     to it, Assets and JPG.
@@ -26,26 +48,6 @@ def init_dir(path):
         os.mkdir(os.path.join(path, 'JPG'))
     except FileExistsError:
         print('# File already exists!')
-
-
-def init_args():
-    """Defines command line arguments.
-
-    Returns:
-        ArgumentParser: argument parser that contains the specified arguments.
-    """
-    helper = 'Initializes a project directory for design work, by creating a main directory with the given name, and sub-dirs (Assets, JPG, etc).'
-    parser = argparse.ArgumentParser(description=helper)
-    parser.add_argument('-P', '--path', default='.', type=str, dest='PATH',
-                        help='The path where to init the project (default: the current directory).')
-    parser.add_argument('-a', '--assets', action='store_true',
-                        help='Creates a Assets directory if specified.')
-    parser.add_argument('-j', '--jpg', action='store_true',
-                        help='Creates a JPG directory if specified.')
-    parser.add_argument('-p', '--png', action='store_true',
-                        help='Creates a PNG directory if specified.')
-
-    return parser
 
 
 if __name__ == "__main__":
