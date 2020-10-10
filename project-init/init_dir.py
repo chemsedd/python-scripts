@@ -1,9 +1,10 @@
 """
-    This is a directories creating tool that i use for initializing 
+    This is a directories creating tool that i use for initializing
     my design projects folders, it creates:
-    - Main project directory with the given argument as dir name,
-    - Sub-dir for Assets, where i put svg, png, jpg...etc, assets that i use,
-    - Sub-dir for JPG, the final exporting format.
+    - Main project directory with the given name and path (optional),
+    - Sub-dir for Assets, for svg, eps, png, jpg...etc, assets that i use,
+    - Sub-dir for JPG, for exportings jpg pictures.
+    - Sub-dir for PNG, for exporting png pictures (logos, icon, etc).
 """
 
 import os
@@ -23,36 +24,50 @@ def init_args():
     parser.add_argument('-P', '--path', default='.', type=str, dest='PATH',
                         help='The path where to init the project (default: the current directory).')
     parser.add_argument('-a', '--assets', action='store_true',
-                        help='Creates a Assets directory if specified.')
+                        help='creates a Assets directory if specified.')
     parser.add_argument('-j', '--jpg', action='store_true',
-                        help='Creates a JPG directory if specified.')
+                        help='creates a JPG directory if specified.')
     parser.add_argument('-p', '--png', action='store_true',
-                        help='Creates a PNG directory if specified.')
+                        help='creates a PNG directory if specified.')
 
     return parser
 
 
-def init_dir(path):
-    """Creates a directory with the given name, and appends 2 sub-dirs
-    to it, Assets and JPG.
+def init_dir(path, name, assets, jpg, png):
+    """Creates a directory with the given name, and appends sub-dirs
+    to it, if specified (Assets, JPG, and PNG).
 
     Args:
-        path (str): the name for the dir (project).
+        path (str): path for the main directory (project).
+        name (str): the name of the directory (project).
+        assets (boolean): if True, creates a Assets directory.
+        jpg (boolean): if True, creates a JPG directory.
+        png (boolean): if True, creates a PNG directory.
     """
     try:
         # Creating the project directory
-        os.mkdir(path)
+        os.mkdir(os.path.join(path, name))
+        print("- Project folder created ✔")
         # Creating directory for assets
-        os.mkdir(os.path.join(path, 'Assets'))
-        # Creating directory for jpg final pictures
-        os.mkdir(os.path.join(path, 'JPG'))
+        if assets:
+            os.mkdir(os.path.join(path, name, 'Assets'))
+            print("\t+ Assets created ✔")
+        # Creating directory for jpg
+        if jpg:
+            os.mkdir(os.path.join(path, name, 'JPG'))
+            print("\t+ JPG created ✔")
+        # Creating directory for png
+        if png:
+            os.mkdir(os.path.join(path, name, 'PNG'))
+            print("\t+ PNG created ✔")
+        print('-' * 27)
     except FileExistsError:
-        print('# File already exists!')
+        # In case of error
+        print('# File already exists ❌')
 
 
 if __name__ == "__main__":
     # create arguments
     parser = init_args()
     args = parser.parse_args()
-    print(args)
-    # init_dir('event-poster')
+    init_dir(args.PATH, args.name, args.assets, args.jpg, args.png)
