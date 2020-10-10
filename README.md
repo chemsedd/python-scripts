@@ -9,3 +9,8 @@ This is a small repositery that contains different python scripts that i use to 
 
 ### Project init
 A small command line tool that automates the creation of folders. I use it specifically for initializing a design project (Adobe illustrator or Adobe Photoshop).
+#### Example:
+```bash
+python init_dir.py --path my_project -a -j -p
+```
+![Project init script](screenshots/project-init.jpg)
