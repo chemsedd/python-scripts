@@ -4,7 +4,7 @@
     - Main project directory with the given argument as dir name,
     - Sub-dir for Assets, where i put svg, png, jpg...etc, assets that i use,
     - Sub-dir for JPG, the final exporting format.
-    """
+"""
 
 import os
 
