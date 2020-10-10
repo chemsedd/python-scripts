@@ -7,6 +7,7 @@
 """
 
 import os
+import argparse
 
 
 def init_dir(path):
@@ -27,4 +28,29 @@ def init_dir(path):
         print('# File already exists!')
 
 
-init_dir('event-poster')
+def init_args():
+    """Defines command line arguments.
+
+    Returns:
+        ArgumentParser: argument parser that contains the specified arguments.
+    """
+    helper = 'Initializes a project directory for design work, by creating a main directory with the given name, and sub-dirs (Assets, JPG, etc).'
+    parser = argparse.ArgumentParser(description=helper)
+    parser.add_argument('-P', '--path', default='.', type=str, dest='PATH',
+                        help='The path where to init the project (default: the current directory).')
+    parser.add_argument('-a', '--assets', action='store_true',
+                        help='Creates a Assets directory if specified.')
+    parser.add_argument('-j', '--jpg', action='store_true',
+                        help='Creates a JPG directory if specified.')
+    parser.add_argument('-p', '--png', action='store_true',
+                        help='Creates a PNG directory if specified.')
+
+    return parser
+
+
+if __name__ == "__main__":
+    # create arguments
+    parser = init_args()
+    args = parser.parse_args()
+    print(args)
+    # init_dir('event-poster')
