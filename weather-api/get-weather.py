@@ -22,14 +22,17 @@ def init_args():
         'city', type=str, help='The name of the city to get weather for.')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='displays more weather data')
+    parser.add_argument('-u', '--units', action='store',
+                        help='For temperature in Fahrenheit use "imperial", for temperature in Celsius use "metric", temperature in Kelvin is used by default, no need to use units parameter in API call.')
 
     return parser
 
 
-def get_weather_data(city, *args, **kwargs):
+def get_weather_data(city, units, *args, **kwargs):
     API_KEY = "7f470030130dcc86a0ec2e4869420ac1"
     URL = f"http://api.openweathermap.org/data/2.5/weather?"\
         f"q={city}&"\
+        f"units={units}&"\
         f"appid={API_KEY}"
     print(URL)
     data = requests.get(URL).json()
@@ -42,7 +45,12 @@ def print_weather_data(data):
 
 
 if __name__ == "__main__":
-    data = get_weather_data(city='London')
+    # argument parser
+    parser = init_args()
+    # get cli arguments
+    args = parser.parse_args()
+
+    data = get_weather_data(city=args.city, units=args.units)
     if data['cod'] != 200:
         print(f"Error accured: {data['message']} ❌")
         exit(0)
