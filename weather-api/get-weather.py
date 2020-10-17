@@ -4,6 +4,7 @@
     - Easy way and no complicated libraries.
 """
 
+import os
 import requests
 import argparse
 import pprint
@@ -15,27 +16,40 @@ def init_args():
     Returns:
         ArgumentParser: argument parser that contains the specified arguments.
     """
-    helper = 'Retrieves the current weather data from the api.openweathremap.org server.'
+    helper = 'Retrieves the current weather data from the api.openweathremap.org server of the given city.'
     parser = argparse.ArgumentParser(description=helper)
 
     parser.add_argument(
-        'city', type=str, help='The name of the city to get weather for.')
+        'city', type=str, help='the name of the city to get weather for.')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='displays more weather data')
     parser.add_argument('-u', '--units', action='store',
-                        help='For temperature in Fahrenheit use "imperial", for temperature in Celsius use "metric", temperature in Kelvin is used by default, no need to use units parameter in API call.')
+                        help='for temperature in Fahrenheit use "imperial", for temperature in Celsius use "metric", temperature in Kelvin is used by default, no need to use units parameter in API call.')
 
     return parser
 
 
 def get_weather_data(city, units, *args, **kwargs):
-    API_KEY = "7f470030130dcc86a0ec2e4869420ac1"
-    URL = f"http://api.openweathermap.org/data/2.5/weather?"\
-        f"q={city}&"\
-        f"units={units}&"\
-        f"appid={API_KEY}"
-    print(URL)
+    """Retrieves the weather data of the given city name from 'api.openweathermap.org'.
+
+    Args:
+        city (string): CITY ID, or a list of cities names.
+        units (string): for temperature in Fahrenheit use "imperial", for temperature in Celsius use "metric", temperature in Kelvin is used by default, no need to use units parameter in API call.
+
+
+    Returns:
+        dict: A dictionary contains all data about the weather of the given city(ies)
+    """
+    API_KEY = os.environ['WEATHER_API_KEY']
+    #API_KEY = os.environ['WEATHER_API_KEY']
+    URL = f"http://api.openweathermap.org/data/2.5/weather?"
+    URL += f"q={city}&"
+    # use units argument if specified
+    if units != "":
+        URL += f"units={units}&"
+    URL += f"appid={API_KEY}"
     data = requests.get(URL).json()
+
     return data
 
 
