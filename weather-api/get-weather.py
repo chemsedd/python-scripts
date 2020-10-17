@@ -1,3 +1,9 @@
+"""
+    This is a command line tool for using the openweathermap.org API.
+    - Retrieving current weather of a specified city,
+    - Easy way and no complicated libraries.
+"""
+
 import requests
 import argparse
 import pprint
