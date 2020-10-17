@@ -1,7 +1,8 @@
 """
     This is a command line tool for using the openweathermap.org API.
-    - Retrieving current weather of a specified city,
+    - Retrieving current weather of a specified city or cities,
     - Easy way and no complicated libraries.
+    - Provides saving the data in a JSON format.
 """
 
 import os
@@ -41,7 +42,6 @@ def get_weather_data(city, units, *args, **kwargs):
         dict: A dictionary contains all data about the weather of the given city(ies)
     """
     API_KEY = os.environ['WEATHER_API_KEY']
-    #API_KEY = os.environ['WEATHER_API_KEY']
     URL = f"http://api.openweathermap.org/data/2.5/weather?"
     URL += f"q={city}&"
     # use units argument if specified
@@ -54,8 +54,16 @@ def get_weather_data(city, units, *args, **kwargs):
 
 
 def print_weather_data(data):
-
-    pass
+    info = f"""\
+    ------------------------------
+    City    : {data['name']}
+    Country : {data['sys']['country']}
+    ------------------------------
+    Temperature : {data['main']['temp']} ({data['main']['temp_min']}/{data['main']['temp_max']})
+    Pressure    : {data['main']['pressure']} 
+    Humidity    : {data['main']['humidity']} 
+    """
+    return info
 
 
 if __name__ == "__main__":
@@ -69,4 +77,4 @@ if __name__ == "__main__":
         print(f"Error accured: {data['message']} ❌")
         exit(0)
     elif data['cod'] == 200:
-        pprint.pprint(data)
+        print(print_weather_data(data))
