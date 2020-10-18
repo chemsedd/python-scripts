@@ -31,7 +31,7 @@ def init_args():
     return parser
 
 
-def get_weather_data(city, units, *args, **kwargs):
+def get_weather_data(city, units):
     """Retrieves the weather data of the given city name from 'api.openweathermap.org'.
 
     Args:
@@ -55,6 +55,13 @@ def get_weather_data(city, units, *args, **kwargs):
 
 
 def print_weather_data(data, verbose):
+    """Displays the weather data in human readable format.
+
+    Args:
+        data (dict): dictionary that contains the weather data.
+        verbose (boolean): if `True`, more detail will be printed about the weather and the city.
+    """
+
     info = f"""
     ------------------------------
     City        : {data['name']}
