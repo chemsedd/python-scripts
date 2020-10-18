@@ -9,6 +9,8 @@ import os
 import requests
 import argparse
 import pprint
+import time
+import datetime
 
 
 def init_args():
@@ -57,7 +59,15 @@ def print_weather_data(data, verbose):
     info = f"""
     ------------------------------
     City        : {data['name']}
-    Country     : {data['sys']['country']}
+    Country     : {data['sys']['country']}"""
+    if verbose:
+        info += f"""
+    Longitude   : {data['coord']['lon']}
+    Latitude    : {data['coord']['lat']}
+    Sunrise     : {datetime.datetime.fromtimestamp(data['sys']['sunrise']).time()}
+    Sunset      : {datetime.datetime.fromtimestamp(data['sys']['sunset']).time()}"""
+
+    info += f"""
     ------------------------------
     Temperature : {data['main']['temp']} ({data['main']['temp_min']}/{data['main']['temp_max']})
     Pressure    : {data['main']['pressure']} 
