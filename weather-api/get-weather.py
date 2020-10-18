@@ -53,16 +53,21 @@ def get_weather_data(city, units, *args, **kwargs):
     return data
 
 
-def print_weather_data(data):
-    info = f"""\
+def print_weather_data(data, verbose):
+    info = f"""
     ------------------------------
-    City    : {data['name']}
-    Country : {data['sys']['country']}
+    City        : {data['name']}
+    Country     : {data['sys']['country']}
     ------------------------------
     Temperature : {data['main']['temp']} ({data['main']['temp_min']}/{data['main']['temp_max']})
     Pressure    : {data['main']['pressure']} 
     Humidity    : {data['main']['humidity']} 
-    """
+    Wind speed  : {data['wind']['speed']}
+    Wind deg    : {data['wind']['deg']}
+    ------------------------------"""
+    if verbose:
+        info += f"""
+        """
     return info
 
 
@@ -77,4 +82,4 @@ if __name__ == "__main__":
         print(f"Error accured: {data['message']} ❌")
         exit(0)
     elif data['cod'] == 200:
-        print(print_weather_data(data))
+        print(print_weather_data(data, args.verbose))
