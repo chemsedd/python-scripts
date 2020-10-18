@@ -5,12 +5,11 @@
     - Provides saving the data in a JSON format.
 """
 
-import os
+from os import environ
 import requests
 import argparse
-import pprint
 import time
-import datetime
+from datetime import datetime
 
 
 def init_args():
@@ -43,7 +42,7 @@ def get_weather_data(city, units, *args, **kwargs):
     Returns:
         dict: A dictionary contains all data about the weather of the given city(ies)
     """
-    API_KEY = os.environ['WEATHER_API_KEY']
+    API_KEY = environ['WEATHER_API_KEY']
     URL = f"http://api.openweathermap.org/data/2.5/weather?"
     URL += f"q={city}&"
     # use units argument if specified
@@ -64,8 +63,8 @@ def print_weather_data(data, verbose):
         info += f"""
     Longitude   : {data['coord']['lon']}
     Latitude    : {data['coord']['lat']}
-    Sunrise     : {datetime.datetime.fromtimestamp(data['sys']['sunrise']).time()}
-    Sunset      : {datetime.datetime.fromtimestamp(data['sys']['sunset']).time()}"""
+    Sunrise     : {datetime.fromtimestamp(data['sys']['sunrise']).time()}
+    Sunset      : {datetime.fromtimestamp(data['sys']['sunset']).time()}"""
 
     info += f"""
     ------------------------------
