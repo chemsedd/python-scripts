@@ -10,13 +10,18 @@ headers = {
 }
 # Request web page
 page = requests.get(url, headers=headers)
-# parse
+# parse to html
 soup = BeautifulSoup(page.content, 'html.parser')
-# top movies
-movies = soup.find_all('a', class_='browse-movie-title')[:4]
-
+# top movies titles
+top_movies_title = soup.find_all('a', class_='browse-movie-title')
+# top movies years
+top_movies_year = soup.find_all('div', class_='browse-movie-year')
+#
+print('\t', '-' * 30)
 # Popular downloads
-print('Popular Downloads:')
-print('------------------')
-for index, movie in enumerate(movies):
-    print(f'{index} > {movie.contents[0]}')
+for index, movie in enumerate(zip(top_movies_title, top_movies_year)):
+    title, year = movie
+    link = title.attrs['href']
+    title = title.contents[-1].strip()
+    year = year.contents[0].strip('\n')
+    print(f"\t {index + 1:02} - {title:30} ({year}) >> {link}")
