@@ -6,9 +6,11 @@ This is a small repositery that contains different python scripts that i use to 
 
 - [Project init](https://github.com/chemsedd/python-scripts/tree/master/project-init)
 - [Weather API](https://github.com/chemsedd/python-scripts/tree/master/weather-api)
+- [YTS Top Movies](https://github.com/chemsedd/python-scripts/tree/master/yts-top-movies)
 
 ### Project init
 A small command line tool that automates the creation of folders. I use it specifically for initializing a design project (Adobe illustrator or Adobe Photoshop).
+
 #### Example:
 ```bash
 python init_dir.py --path my_project -a -j -p
@@ -22,3 +24,6 @@ A command line tool for retrieving weather data from the api.openweathermap.org 
 ```bash
 python get-weather.py london --verbose
 ```
+
+## YTS.ag Top Movies
+Retreives top movies from the YTS website, and display them with some information.
