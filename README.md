@@ -25,5 +25,12 @@ A command line tool for retrieving weather data from the api.openweathermap.org 
 python get-weather.py london --verbose
 ```
 
-## YTS.ag Top Movies
-Retreives top movies from the YTS website, and display them with some information.
+## YTS Top Movies
+Retreives top movies from the YTS website, and display them with some information. The script scrappes the HTML from the website and retreives the data. Then displays in on the console.
+
+```bash
+python yts-top-movies.py
+```
+
+### Example:
+![YTS TOP MOVIES](screenshot/../screenshots/yts-top-movies.jpg)

@@ -2,7 +2,7 @@
     This is a command line tool for using the openweathermap.org API.
     - Retrieving current weather of a specified city or cities,
     - Easy way and no complicated libraries.
-    - Provides saving the data in a JSON format.
+    - Arguments for specifying the output.
 """
 
 from os import environ
