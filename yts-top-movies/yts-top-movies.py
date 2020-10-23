@@ -4,6 +4,22 @@
 import requests
 from bs4 import BeautifulSoup
 
+
+title = f"""
+\t __   _______ _____   _____ ___________  ___  ________  _   _ _____ _____ _____ 
+\t \ \ / /_   _/  ___| |_   _|  _  | ___ \ |  \/  |  _  || | | |_   _|  ___/  ___|
+\t  \ V /  | | \ `--.    | | | | | | |_/ / | .  . | | | || | | | | | | |__ \ `--. 
+\t   \ /   | |  `--. \   | | | | | |  __/  | |\/| | | | || | | | | | |  __| `--. \\
+\t   | |   | | /\__/ /   | | \ \_/ / |     | |  | \ \_/ /\ \_/ /_| |_| |___/\__/ /
+\t   \_/   \_/ \____/    \_/  \___/\_|     \_|  |_/\___/  \___/ \___/\____/\____/ 
+\t {'-' * 80}
+\t {'By: chemsedd':^80}
+\t {'-' * 80}
+"""
+
+print(title)
+
+# YTS website
 url = 'https://yts.mx/'
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:79.0) Gecko/20100101 Firefox/79.0'
@@ -16,10 +32,16 @@ soup = BeautifulSoup(page.content, 'html.parser')
 top_movies_title = soup.find_all('a', class_='browse-movie-title')
 # top movies years
 top_movies_year = soup.find_all('div', class_='browse-movie-year')
+movies_list = zip(top_movies_title, top_movies_year)
 #
-print('\t', '-' * 30)
 # Popular downloads
-for index, movie in enumerate(zip(top_movies_title, top_movies_year)):
+for index, movie in enumerate(movies_list):
+    if index == 0:
+        print('\t\n', '\t Popular Downloads:', '\n\t', '-' * 80)
+    elif index == 4:
+        print('\t\n', '\t Latest Movies:', '\n\t', '-' * 80)
+    elif index == 12:
+        print('\t\n', '\t Upcoming Movies:', '\n\t', '-' * 80)
     title, year = movie
     link = title.attrs['href']
     title = title.contents[-1].strip()
