@@ -1,7 +1,7 @@
-![](https://img.shields.io/badge/author-chemsedd-%23c10000)
-![](https://img.shields.io/github/issues/chemsedd/python-scripts)
-![](https://img.shields.io/github/forks/chemsedd/python-scripts)
-![](https://img.shields.io/github/stars/chemsedd/python-scripts)
+![](https://img.shields.io/badge/author-chemsedd-%23c10000?style=for-the-badge)
+![](https://img.shields.io/github/issues/chemsedd/python-scripts?style=for-the-badge)
+![](https://img.shields.io/github/forks/chemsedd/python-scripts?style=for-the-badge)
+![](https://img.shields.io/github/stars/chemsedd/python-scripts?style=for-the-badge)
 
 # Python Scripts
 
