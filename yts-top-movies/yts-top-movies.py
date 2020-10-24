@@ -1,4 +1,8 @@
 """This script allows us to see the most popular movies on yts.mx
+    - Most popular movies
+    - Latest uploads
+    - Upcoming movies
+    The script uses BeautifylSoup to scrap data from the website.
 """
 
 import requests
