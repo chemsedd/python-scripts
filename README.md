@@ -25,6 +25,11 @@ A command line tool for retrieving weather data from the api.openweathermap.org 
 python get-weather.py london --verbose
 ```
 
+#### Example:
+![weather-cli-help](screenshots/weather_cli_help.jpg)
+![weather-cli-example](screenshots/weather_cli_example.jpg)
+
+
 ## YTS Top Movies
 Retreives top movies from the YTS website, and display them with some information. The script scrappes the HTML from the website and retreives the data. Then displays in on the console.
 
