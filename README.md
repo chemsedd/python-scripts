@@ -44,3 +44,6 @@ python yts-top-movies.py
 
 ### Example:
 ![YTS TOP MOVIES](screenshot/../screenshots/yts-top-movies.jpg)
+
+----------------
+**Main Author:** [Chems Eddine Senoussi](https://github.com/chemsedd)
